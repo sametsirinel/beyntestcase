@@ -7,7 +7,7 @@ use App\Models\Order;
 use Illuminate\Database\Seeder;
 use Illuminate\Foundation\Testing\WithFaker;
 
-class ProductSeeder extends Seeder
+class OrderSeeder extends Seeder
 {
     use WithFaker;
 

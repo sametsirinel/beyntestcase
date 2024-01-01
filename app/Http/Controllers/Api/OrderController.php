@@ -21,6 +21,30 @@ class OrderController extends Controller
         ]);
     }
 
+    public function store(Order $order, Request $request)
+    {
+        $validated = $request->validate([
+            "order_code" => "required|string|max:50",
+            "product_id" => "required|numeric|exists:products,id",
+            "quantity" => "required|numeric",
+            "address" => "required|string|max:255",
+        ]);
+
+        $order = $request
+            ->user()
+            ->orders()
+            ->create($validated);
+
+        return response()->json([
+            "status" => true,
+            "message" => "success",
+            "statusCode" => 200,
+            "data" => [
+                "order" => $order
+            ]
+        ]);
+    }
+
     public function show(Order $userOrder)
     {
         return response()->json([

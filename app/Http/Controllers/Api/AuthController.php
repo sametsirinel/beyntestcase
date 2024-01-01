@@ -26,7 +26,13 @@ class AuthController extends Controller
 
     public function me(): JsonResponse
     {
-        return response()->json(auth()->user());
+        return response()->json([
+            "status" => "true",
+            "statusCode" => 200,
+            "data" => [
+                "user" => auth()->user()
+            ]
+        ]);
     }
 
     public function logout(): JsonResponse
